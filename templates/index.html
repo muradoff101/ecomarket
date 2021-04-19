@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mainpanel">
+    <div class="pageheader">
+        <div class="media">
+            <div class="pageicon pull-left">
+                <i class="fa fa-home"></i>
+            </div>
+            <div class="media-body">
+                <ul class="breadcrumb">
+                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li>Dashboard</li>
+                </ul>
+                <h4>Dashboard</h4>
+            </div>
+        </div><!-- media -->
+    </div><!-- pageheader -->
+
+    <div class="contentpanel">
+
+        <div class="row row-stat">
+            <div class="col-md-4">
+                <div class="panel panel-success-alt noborder">
+                    <div class="panel-heading noborder">
+                        <div class="panel-btns">
+                            <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i
+                                    class="fa fa-times"></i></a>
+                        </div><!-- panel-btns -->
+                        <div class="panel-icon"><i class="fa fa-building"></i></div>
+                        <div class="media-body">
+                            <h5 class="md-title nomargin">Companies</h5>
+                            <h1 class="mt5">{{companies_count}}</h1>
+                        </div><!-- media-body -->
+                        <hr>
+
+                    </div><!-- panel-body -->
+                </div><!-- panel -->
+            </div><!-- col-md-4 -->
+
+            <div class="col-md-4">
+                <div class="panel panel-primary noborder">
+                    <div class="panel-heading noborder">
+                        <div class="panel-btns">
+                            <a href="" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i
+                                    class="fa fa-times"></i></a>
+                        </div><!-- panel-btns -->
+                        <div class="panel-icon"><i class="fa fa-users"></i></div>
+                        <div class="media-body">
+                            <h5 class="md-title nomargin">Couriers</h5>
+                            <h1 class="mt5">{{couriers_count}}</h1>
+                        </div><!-- media-body -->
+                        <hr>
+
+                    </div><!-- panel-body -->
+                </div><!-- panel -->
+            </div><!-- col-md-4 -->
+
+            <div class="col-md-4">
+                <div class="panel panel-dark noborder">
+                    <div class="panel-heading noborder">
+                        <div class="panel-btns">
+                            <a href="" class="panel-close tooltips" data-toggle="tooltip" data-placement="left"
+                                title="Close Panel"><i class="fa fa-times"></i></a>
+                        </div><!-- panel-btns -->
+                        <div class="panel-icon"><i class="fa fa-mobile"></i></div>
+                        <div class="media-body">
+                            <h5 class="md-title nomargin">Devices</h5>
+                            <h1 class="mt5">{{devices_count}}</h1>
+                        </div><!-- media-body -->
+                        <hr>
+
+                    </div><!-- panel-body -->
+                </div><!-- panel -->
+            </div><!-- col-md-4 -->
+        </div><!-- row -->
+
+        <style>
+            .clear {
+                clear: both;
+            }
+
+            #map {
+                height: 500px;
+                width: 100%;
+            }
+        </style>
+
+
+        <table class="hidden map_info">
+            {% for location in locations %}
+            <tr class="info{{forloop.counter}}">
+                <td class="courier_name">{{location.device.courier.full_name}}</td>
+                <td class="courier_latitude">{{ location.latitude }}</td>
+                <td class="courier_longitude">{{ location.longitude }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="row">
+            <div class="col-md-12 col-12 col-sm-12">
+                <h5 class="lg-title">Map with markers</h5>
+                <!-- <p>Some example of using google maps with markers enabled</p> -->
+                <div class="w-100">
+                    <!-- <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1999.1600491629997!2d30.29443431617569!3d59.92948636979882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469630e20893ae4f%3A0x89f51ac9cbfa31ea!2sBol&#39;shaya%20Morskaya%20Ulitsa%2C%2067%2C%20Sankt-Peterburg%2C%20Russia%2C%20190000!5e0!3m2!1sen!2s!4v1618745663717!5m2!1sen!2s"
+                        width="1410" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+
+                    <div id="floating-panel">
+                        <input onclick="clearMarkers();" type="button" value="Hide Markers" />
+                        <input onclick="showMarkers();" type="button" value="Show All Markers" />
+                        <!-- <input onclick="deleteMarkers();" type="button" value="Delete Markers" /> -->
+                    </div><br>
+                    <div class="clear"></div>
+                    <div id="map"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div><!-- contentpanel -->
+
+</div><!-- mainpanel -->
+{% endblock content %}

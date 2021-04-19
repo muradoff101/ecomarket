@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mainpanel">
+    <div class="pageheader">
+        <div class="media">
+            <div class="pageicon pull-left">
+                <i class="fa fa-building"></i>
+            </div>
+            <div class="media-body">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'main_page_link' %}"><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li>Companies list</li>
+                </ul>
+                <h4>Companies list</h4>
+            </div>
+        </div><!-- media -->
+    </div><!-- pageheader -->
+
+    <div class="contentpanel">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-dark-head">
+                    <div class="panel-body">
+
+                        <div class="results-list">
+
+                            {% for company in companies %}
+
+                            <div class="media">
+                                <!-- <a href="search-results.html#" class="pull-left">
+                                    <img alt="" src="images/photos/media1.jpg" class="media-object thumbnail">
+                                </a> -->
+                                <div class="media-body">
+                                    <h4 class="filename text-primary">{{ company.name }}</h4>
+                                    <span class="text-muted">Creates: {{ company.created_at }}</span><br />
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+
+                        </div><!-- results-list -->
+                    </div><!-- panel-body -->
+                </div><!-- panel -->
+
+                <!-- <ul class="pagination pagination-search">
+                    <li class="disabled"><a href="search-results.html#"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="search-results.html#">1</a></li>
+                    <li class="active"><a href="search-results.html#">2</a></li>
+                    <li><a href="search-results.html#">3</a></li>
+                    <li><a href="search-results.html#">4</a></li>
+                    <li><a href="search-results.html#">5</a></li>
+                    <li><a href="search-results.html#"><i class="fa fa-angle-right"></i></a></li>
+                </ul> -->
+
+            </div><!-- col-sm-8 -->
+        </div><!-- row -->
+
+    </div><!-- contentpanel -->
+
+</div>
+
+{% endblock content %}
